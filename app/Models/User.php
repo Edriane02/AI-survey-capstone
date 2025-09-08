@@ -12,15 +12,18 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'user_type',
+        'user_status',
     ];
 
     /**
@@ -44,5 +47,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function facultyProfile()
+    {
+        return $this->hasOne(FacultyProfile::class, 'user_id', 'id');
     }
 }
