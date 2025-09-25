@@ -16,21 +16,18 @@ class Course extends Model
         'course_code',
         'course_description',
         'course_units',
-        'user_id',
     ];
 
-    public function facultyProfile()
-    {
-        return $this->belongsTo(FacultyProfile::class, 'user_id', 'user_id');
+    public function students() {
+        return $this->belongsToMany(StudentProfile::class, 'student_course');
+    }
+
+    public function faculty() {
+        return $this->belongsToMany(FacultyProfile::class, 'faculty_course');
     }
 
     public function fullCourseInfo()
     {
         return "{$this->course_code} - {$this->course_description} ({$this->course_units} units)";
-    }
-   
-    public function students()
-    {
-        return $this->belongsToMany(StudentProfile::class, 'course_student', 'course_id', 'user_id');
     }
 }

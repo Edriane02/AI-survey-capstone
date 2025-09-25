@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Course;
+use App\Models\Evaluation;
 
 class FacultyProfile extends Model
 {
@@ -20,18 +23,24 @@ class FacultyProfile extends Model
         'last_name',
         'suffix',
         'avatar',
-        'des_id',
+        'role',
         'department',
     ];
 
-    public function user()
-    {
+     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function designation()
-    {
-        return $this->belongsTo(Designation::class, 'des_id', 'id');
+    public function courses() {
+        return $this->belongsToMany(Course::class, 'course_faculty');
+    }
+
+    public function evaluationsGiven() {
+        return $this->hasMany(Evaluation::class, 'evaluator_id');
+    }
+
+    public function evaluationsReceived() {
+        return $this->hasMany(Evaluation::class, 'evaluatee_id');
     }
 
     public function fullName()

@@ -8,19 +8,19 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/dcismicon.png"/>
+    <link rel="shortcut icon" href="{{ asset('assets/images/dcismicon.png')}}"/>
     <!-- preloader css -->
-    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/preloader.min.css')}}" type="text/css" />
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css -->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
     <!-- Custom CSS -->
-    <link href="assets/css/custom-style.css" id="app-style" rel="stylesheet" type="text/css" />
-    <link href="assets/css/custom-style-login.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom-style.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom-style-login.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
     <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,7 @@
                             <div class="d-flex flex-column h-100">
                                 <div class="pt-5 mb-3 text-center">
                                     <a href="javascript:void(0)" class="d-block auth-logo">
-                                        <img src="assets/images/dcismicon.png" alt="" width="130">
+                                        <img src="{{ asset('assets/images/dcismicon.png')}}" alt="" width="130">
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
@@ -61,10 +61,11 @@
                                             <div class="text-center">
                                                 <h4 style="color: #333333;" class="mt-2">Sign in to continue.</h4>
                                             </div>
-                                            <form class="mt-4 pt-2" action="index.html">
+                                            <form class="mt-4 pt-2" method="POST" action="{{ route('login.request') }}">
+                                                @csrf
                                                 <div class="mb-3">
                                                     <label class="form-label">Email</label>
-                                                    <input type="text" class="form-control" id="" placeholder="Enter Your Email">
+                                                    <input type="text" name="email" class="form-control" id="email" placeholder="Enter Your Email">
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="d-flex align-items-start">
@@ -78,7 +79,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="input-group auth-pass-inputgroup">
-                                                        <input type="password" class="form-control" placeholder="Enter Your Password" aria-label="Password" aria-describedby="password-addon">
+                                                        <input type="password" name="password" class="form-control" placeholder="Enter Your Password" aria-label="Password" aria-describedby="password-addon">
                                                         <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                                                     </div>
                                                 </div>
@@ -106,16 +107,16 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="assets/libs/jquery/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js')}}"></script>
     <!-- pace js -->
-    <script src="assets/libs/pace-js/pace.min.js"></script>
+    <script src="{{ asset('assets/libs/pace-js/pace.min.js')}}"></script>
     <!-- password addon init -->
-    <script src="assets/js/pages/pass-addon.init.js"></script>
+    <script src="{{ asset('assets/js/pages/pass-addon.init.js')}}"></script>
 
 </body>
 

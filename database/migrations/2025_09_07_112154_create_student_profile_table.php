@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('student_profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->string('faculty_id')->unique();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('student_id')->unique()->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('year_level');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

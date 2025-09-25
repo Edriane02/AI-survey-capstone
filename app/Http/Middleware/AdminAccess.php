@@ -16,7 +16,7 @@ class AdminAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->facultyProfile->designation->designation_name  === 'Administrator') {
+        if (Auth::check() && Auth::user()->user_type  === 'Admin') {
             return $next($request);
         }else{
             return redirect()->route('unauthorized');

@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
         $user = User::create([
             'email' => 'admin@usc.edu.ph',
             'password' => Hash::make('dcismadmin123'),
-            'user_type' => 'Faculty',
+            'date_created' => now(),
+            'user_type' => 'Admin',
             'user_status' => 'Active',
         ]);
 
@@ -31,8 +32,8 @@ class UserSeeder extends Seeder
             'first_name' => 'Admin',
             'middle_name' => null,
             'last_name' => 'User',
-            'des_id' => 1, // Assuming '1' corresponds to a valid designation
-            'department' => 'DCISM', // Assuming '1' corresponds to a valid department
+            'role' => 'Coordinator', 
+            'department' => 'DCISM', 
         ]);
 
     }

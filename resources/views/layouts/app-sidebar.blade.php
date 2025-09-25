@@ -4,28 +4,28 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>@yield('title') | SAM HRIS Portal</title>
+        <title>@yield('title') | DCISM Evaluation Portal</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="" name="description" />
         <meta content="" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/dcismicon.png"/>
+        <link rel="shortcut icon" href="{{ asset('assets/images/dcismicon.png')}}"/>
 
         <!-- plugin css -->
-        <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css" />
 
         <!-- preloader css -->
-        <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/preloader.min.css')}}" type="text/css" />
 
         <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
         <!-- Custom CSS -->
-        <link href="assets/css/custom-style.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/custom-style.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
         <!-- Inter Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +36,9 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- SweetAlert 2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
 
     <body>
@@ -53,19 +56,22 @@
                         <div class="navbar-brand-box">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/sam-logo-icon-comp.png" alt="" width="36">
+                                    <img src="{{ asset('assets/images/dcismicon.png')}}" alt="" width="36">
                                 </span>
-                                <span class="logo-lg">
-                                    <img src="assets/images/sam-logo-hori-hq-comp.png" alt="" width="90">
+                                
+                                <span class="logo-lg d-flex align-items-center">
+                                    <img src="{{ asset('assets/images/dcismicon.png')}}" alt="" width="50" class="me-2">
+                                    <span class="logo-title">AI Survey</span>
                                 </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/sam-logo-icon-light-comp.png" alt="" width="36">
+                                    <img src="{{ asset('assets/images/dcismicon.png')}}" alt="" width="36">
                                 </span>
-                                <span class="logo-lg">
-                                    <img src="assets/images/logo-landscape-white-og-comp.png" alt="" width="90">
+                                <span class="logo-lg d-flex align-items-center">
+                                    <img src="{{ asset('assets/images/dcismicon.png')}}" alt="" width="50" class="me-2">
+                                    <span class="logo-title">AI Survey</span>
                                 </span>
                             </a>
                         </div>
@@ -99,7 +105,7 @@
                                     <a href="#!" class="text-reset notification-item">
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
-                                                <img src="assets/images/users/avatar-3.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                                <img src="{{ asset('assets/images/users/avatar-3.jpg')}}" class="rounded-circle avatar-sm" alt="user-pic">
                                             </div>
                                             <div class="flex-grow-1">
                                                 <h6 class="mb-1">James Lemire</h6>
@@ -146,7 +152,7 @@
                                     <a href="#!" class="text-reset notification-item">
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
-                                                <img src="assets/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                                <img src="{{ asset('assets/images/users/avatar-6.jpg')}}" class="rounded-circle avatar-sm" alt="user-pic">
                                             </div>
                                             <div class="flex-grow-1">
                                                 <h6 class="mb-1">Salena Layfield</h6>
@@ -165,35 +171,41 @@
                                 </div>
                             </div>
                             
-                        <div class="dropdown d-none d-sm-inline-block">
-                            <button type="button" class="btn header-item" id="mode-setting-btn">
-                                <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
-                                <i data-feather="sun" class="icon-lg layout-mode-light"></i>
-                            </button>
-                        </div>
+                            <div class="dropdown d-none d-sm-inline-block">
+                                <button type="button" class="btn header-item" id="mode-setting-btn">
+                                    <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
+                                    <i data-feather="sun" class="icon-lg layout-mode-light"></i>
+                                </button>
+                            </div>
 
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item right-bar-toggle me-2">
-                                <i data-feather="settings" class="icon-lg"></i>
-                            </button>
-                        </div>
+                            <div class="dropdown d-inline-block">
+                                <button type="button" class="btn header-item right-bar-toggle me-2">
+                                    <i data-feather="settings" class="icon-lg"></i>
+                                </button>
+                            </div>
 
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item" id="page-header-user-dropdown"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="profile-picture-wrapper">
-                                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
-                                        alt="Header Avatar">
+                            <div class="dropdown d-inline-block">
+                                <button type="button" class="btn header-item" id="page-header-user-dropdown"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="profile-picture-wrapper">
+                                        <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/avatar-1.jpg')}}"
+                                            alt="Header Avatar">
+                                    </div>
+                                    <span class="d-none d-xl-inline-block ms-2 fw-medium">Edriane</span>
+                                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <!-- item-->
+                                    <a class="dropdown-item" href="apps-profile.html"><i class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
+                                    <a class="dropdown-item" href="auth-lock-screen.html"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock Screen</a>
+                                    <div class="dropdown-divider"></div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout
+                                    </a>
                                 </div>
-                                <span class="d-none d-xl-inline-block ms-2 fw-medium">Edriane</span>
-                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <a class="dropdown-item" href="apps-profile.html"><i class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
-                                <a class="dropdown-item" href="auth-lock-screen.html"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock Screen</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="auth-logout.html"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
                             </div>
                         </div>
                     </div>
@@ -272,7 +284,7 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li>
-                                        <a href="hr-user-list.html">
+                                        <a href="{{ route('management.users')}}">
                                             <span data-key="">User List</span>
                                         </a>
                                     </li>                         
@@ -325,10 +337,18 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
+        <div class="main-content">
+            @include('partials.sweetalert')
+            <div class="page-content">
+                <div style="margin-bottom: 1em;" class="col-12">
+                    <h4 class="mb-sm-0 font-size-14 text-muted">@yield('title')</h4>
+                </div>
 
-            @yield('contents')
+                @yield('contents')
 
+            </div>
             <!-- End Page-content -->
+             @include('partials.swal-confirm-delete')
 
             <footer class="footer">
                     <div class="container-fluid">
@@ -343,11 +363,11 @@
                             </div>
                         </div>
                     </div>
-                </footer>
-            </div>
+            </footer>
+        </div>
             <!-- end main content-->
 
-        </div>
+    </div>
         <!-- END layout-wrapper -->
 
         
@@ -490,27 +510,27 @@
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/node-waves/waves.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/feather-icons/feather.min.js')}}"></script>
         <!-- pace js -->
-        <script src="assets/libs/pace-js/pace.min.js"></script>
+        <script src="{{ asset('assets/libs/pace-js/pace.min.js')}}"></script>
 
-        <script src="assets/js/pages/materialdesign.init.js"></script>
+        <script src="{{ asset('assets/js/pages/materialdesign.init.js')}}"></script>
 
         <!-- apexcharts -->
-        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+        <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js')}}"></script>
 
         <!-- Plugins js-->
-        <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="{{ asset('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js')}}"></script>
         <!-- dashboard init -->
-        <script src="assets/js/pages/dashboard.init.js"></script>
+        <script src="{{ asset('assets/js/pages/dashboard.init.js')}}"></script>
 
-        <script src="assets/js/app.js"></script>
+        <script src="{{ asset('assets/js/app.js')}}"></script>
 
         <!-- Apex Charts data -->
         <script>

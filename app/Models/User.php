@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models;  
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use  HasApiTokens, HasFactory, Notifiable;
 
     protected $primaryKey = 'id';
 
@@ -22,6 +24,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'date_created',
         'user_type',
         'user_status',
     ];
@@ -51,6 +54,11 @@ class User extends Authenticatable
 
     public function facultyProfile()
     {
-        return $this->hasOne(FacultyProfile::class, 'user_id', 'id');
+        return $this->hasOne(FacultyProfile::class);
+    }
+
+    public function studentProfile()
+    {
+        return $this->hasOne(StudentProfile::class);
     }
 }

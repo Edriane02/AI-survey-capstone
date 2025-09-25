@@ -13,7 +13,7 @@ class StudentProfile extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
-        'faculty_id',
+        'student_id',
         'first_name',
         'middle_name',
         'last_name',
@@ -32,15 +32,14 @@ class StudentProfile extends Model
         return $this->belongsTo(Program::class, 'program_id', 'id');
     }
 
+     public function courses() {
+        return $this->belongsToMany(Course::class, 'student_course');
+    }
+
     public function fullName()
     {
         $middleInitial = $this->middle_name ? strtoupper($this->middle_name[0]) . '.' : '';
 
         return trim("{$this->first_name} {$middleInitial} {$this->last_name} {$this->suffix}");
-    }
-
-    public function courses()
-    {
-        return $this->belongsToMany(Course::class, 'course_student', 'user_id', 'course_id');
     }
 }

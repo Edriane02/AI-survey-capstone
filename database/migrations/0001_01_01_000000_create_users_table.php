@@ -9,11 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable(); // set later after email confirmation
-            $table->enum('user_type', ['Student', 'Faculty']);
+            $table->dateTime('date_created');
+            $table->enum('user_type', ['Student', 'Faculty', 'Admin']);
             $table->enum('user_status', ['Active', 'Inactive'])->default('Inactive');
             $table->timestamp('welcome_valid_until')->nullable();
             $table->rememberToken();
@@ -27,8 +29,9 @@ return new class extends Migration
         });
 
         Schema::create('sessions', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');

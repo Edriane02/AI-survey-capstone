@@ -16,6 +16,7 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use App\Http\Middleware\FacultyAccess;
+use App\Http\Middleware\SessionTimeout;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -45,7 +46,6 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
-            \App\Http\Middleware\SessionTimeout::class,
         ]);
 
         $middleware->group('api', [
@@ -69,6 +69,7 @@ return Application::configure(basePath: dirname(__DIR__))
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'limit.access' => SessionTimeout::class,
         ]);
 
 

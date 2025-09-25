@@ -10,19 +10,18 @@ return new class extends Migration
     {
         Schema::create('faculty_profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->string('faculty_id')->unique();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('faculty_id')->unique()->nullable();
             $table->string('title')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('suffix')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('des_id');
+            $table->enum('role', ['Faculty', 'Coordinator'])->default('Faculty');
             $table->string('department')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -50,7 +50,7 @@ class LoginRequest extends FormRequest
 
         // Student: ignore remember me
     $remember = false;
-    if ($user->user_type === 'faculty') {
+    if ($user->user_type === 'Faculty' || $user->user_type === 'Admin') {
             $remember = $this->boolean('remember');
         }
 

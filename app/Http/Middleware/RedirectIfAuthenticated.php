@@ -19,12 +19,15 @@ class RedirectIfAuthenticated
      $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-                if (Auth::guard($guard)->check() && Auth::user()->facultyProfile->designation->designation_name === 'Administrator') {
+                if (Auth::guard($guard)->check() && Auth::user()->user_type === 'Admin') {
                     return redirect()->route('admin.dashboard');
                 }
-                elseif (Auth::guard($guard)->check() && Auth::user()->facultyProfile->designation->designation_name === 'Teacher') {
+                elseif (Auth::guard($guard)->check() && Auth::user()->user_type === 'Teacher') {
+                    return redirect()->route('dashboard');
+                }elseif (Auth::guard($guard)->check() && Auth::user()->user_type === 'Student') {
                     return redirect()->route('dashboard');
                 }
+                
             }
 
      return $next($request);
