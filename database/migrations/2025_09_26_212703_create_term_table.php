@@ -6,20 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('student_profile', function (Blueprint $table) {
+        Schema::create('term', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('users', 'user_id')->onDelete('cascade');
-            $table->string('first_middle_name');
-            $table->string('last_name');
+            $table->string('term_name'); 
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
-
         });
+
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('student_profile');
+        Schema::dropIfExists('term');
     }
 };

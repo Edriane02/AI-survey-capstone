@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('evaluator_id')->constrained('users')->onDelete('cascade'); // who gave feedback
             $table->foreignId('evaluatee_id')->constrained('users')->onDelete('cascade'); // who got feedback
             $table->foreignId('course_id')->nullable()->constrained('courses')->onDelete('cascade'); // optional link
-            $table->enum('evaluation_type', ['StudentsToFaculty', 'FacultyToCoordinator', 'CoordinatorToFaculty']);
             $table->json('responses'); // survey answers
             $table->timestamps();
         });

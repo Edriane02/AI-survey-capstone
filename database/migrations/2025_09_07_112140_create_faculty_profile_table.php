@@ -8,18 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('faculty_profiles', function (Blueprint $table) {
+        Schema::create('faculty_profile', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('faculty_id')->unique()->nullable();
-            $table->string('title')->nullable();
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
+            $table->foreignId('user_id')->constrained('users', 'user_id')->onDelete('cascade');
+            $table->string('faculty_id')->unique();
+            $table->string('first_middle_name');
             $table->string('last_name');
-            $table->string('suffix')->nullable();
             $table->string('avatar')->nullable();
-            $table->enum('role', ['Faculty', 'Coordinator'])->default('Faculty');
-            $table->string('department')->nullable();
             $table->timestamps();
 
         });
@@ -27,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('faculty_profiles');
+        Schema::dropIfExists('faculty_profile');
     }
 };

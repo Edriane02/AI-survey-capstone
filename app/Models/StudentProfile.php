@@ -9,17 +9,13 @@ class StudentProfile extends Model
 {
     use HasFactory;
     // 
-    protected $table = 'student_profiles';
+    protected $table = 'student_profile';
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
         'student_id',
-        'first_name',
-        'middle_name',
+        'first_middle_name',
         'last_name',
-        'suffix',
-        'program_id',
-        'year_level',
     ];
 
     public function user()
@@ -27,19 +23,20 @@ class StudentProfile extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function studentTerm()
+    {
+        return $this->hasMany(StudentTerm::class, 'student_id');
+    }
+
+
     public function program()
     {
         return $this->belongsTo(Program::class, 'program_id', 'id');
     }
 
-     public function courses() {
+     public function courses()
+    {
         return $this->belongsToMany(Course::class, 'student_course');
     }
 
-    public function fullName()
-    {
-        $middleInitial = $this->middle_name ? strtoupper($this->middle_name[0]) . '.' : '';
-
-        return trim("{$this->first_name} {$middleInitial} {$this->last_name} {$this->suffix}");
-    }
 }
